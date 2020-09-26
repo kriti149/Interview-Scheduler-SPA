@@ -29,16 +29,6 @@ let CreateInterview = async (data, id) => {
        const response = await fetch('http://localhost:3000/api/v1/interviews/' + id,  options)
        const json = await response.json();
        console.log(json)
-       console.log(response.status)
-       if (response.status == 401) {
-           var o = json;
-           for (var key in o) {
-               if (o.hasOwnProperty(key)) {
-                   alert(key, o[key]);
-               }
-           }   
-       }
-       json["status"] = response.status;
        return json
    } catch (err) {
        alert(err)
@@ -115,7 +105,6 @@ let UpdateInterview = {
             };
             console.log(data);
             let response = await CreateInterview(data, request.id);
-            if (response["status"] != 401)
             routing.render("Interviews")
             
         })
